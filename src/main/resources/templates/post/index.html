@@ -9,10 +9,13 @@
 <div th:replace="header ::navbar"></div>
 <h1>Create a post!</h1>
 <form action="/show" method="post">
-    <h6>Title</h6>2
+    <h6>Title</h6>
     <input type="text" name="title" id="title_id" class="field" >
     <h6> Description</h6>
     <input type="text" name="description" id="desc_id" class="field" >
+    <input type="hidden" name="id" >
+
+
     <Button>Submit add </Button>
 </form>
 
