@@ -1,6 +1,7 @@
 package com.codeup.blog.blog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -12,6 +13,11 @@ public class Post {
     private String title;
     @Column(nullable = false)
     private String description;
+
+
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<PostImage> image;
 
     public Post() {
     }
@@ -50,4 +56,19 @@ public class Post {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+    public List<PostImage> getImage() {
+        return image;
+    }
+
+    public void setImage(List<PostImage> image) {
+        this.image = image;
+    }
+//    public List<PostImage> getImages () {
+//        return imag es;
+//    }
+//    public void setImages(List<PostImage> image){
+//        this.images = image;
+//    }
 }

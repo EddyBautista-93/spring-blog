@@ -8,20 +8,27 @@
 </head>
 <body>
 
-<div th:replace="header ::navbar"></div>
-
 
 <div  th:each="post : ${post}">
     <h1 th:text="${post.title}"></h1>
     <p th:text="${post.description}"></p>
+    <h2>Images:</h2>
+    <div th:each="image : ${post.image}">
+        <h2 th:text="${image.image_title}"></h2>
+        <img th:src="${image.url}">
     <input type="hidden" name="id" th:value="${post.id}">
     <a th:href="@{'/show/' + ${post.id} + '/edit'}" class="btn btn-warning">Edit post</a>-->
                 <form th:action="@{'/show/' + ${post.id} + '/delete'}" method="post">
                     <button class="btn btn-danger btn-block">Delete Ad</button>
+
                 </form>
+    </div>
 </div>
-<!--</body>-->
-<!--</html>-->
+</body>
+</html>
+
+
+
 
 <!--<body>-->
 

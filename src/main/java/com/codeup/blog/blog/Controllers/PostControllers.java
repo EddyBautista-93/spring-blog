@@ -1,5 +1,6 @@
 package com.codeup.blog.blog.Controllers;
 
+import com.codeup.blog.blog.Repo.PostRepository;
 import com.codeup.blog.blog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
 
 @Controller
 public class PostControllers {
@@ -60,4 +59,9 @@ public class PostControllers {
         postDao.deleteById(id);
         return "redirect:/show/";
     }
+
+
+
+
+
 }
