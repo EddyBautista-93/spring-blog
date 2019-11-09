@@ -9,7 +9,6 @@
 </head>
 <body>
 <div th:replace="header ::navbar"></div>
-
 <a th:href="@{'/show/create'}" class="btn btn-warning">New post</a>
 <div  th:each="post : ${post}">
     <h1 th:text="${post.title}"></h1>
@@ -20,29 +19,5 @@
         <button class="btn btn-danger btn-block">Delete Ad</button>
     </form>
 </div>
-<!--&lt;!&ndash;<h1><span th:text="${post.title}"></span> .</h1>&ndash;&gt;-->
-
-<!--&lt;!&ndash;<ul th:each="toy : ${post.description}">&ndash;&gt;-->
-<!--&lt;!&ndash;    <li th:text="${user.email}"></li>&ndash;&gt;-->
-<!--&lt;!&ndash;</ul>&ndash;&gt;-->
-
-
-<!--<div  th:each="post : ${post}">-->
-<!--    <h1 th:text="${post.title}"></h1>-->
-<!--    <p th:text="${post.description}"></p>-->
-<!--    <div th:each="user : ${post.user}">-->
-<!--        <h2 th:text="${user.username}"></h2>-->
-
-<!--    <input type="hidden" name="id" th:value="${post.id}">-->
-<!--        <ul th:each="tag : ${post.tag}">-->
-<!--            <li th:text="${tag.name}" ></li>-->
-<!--        </ul>-->
-<!--    <a th:href="@{'/show/' + ${post.id} + '/edit'}" class="btn btn-warning">Edit post</a>&ndash;&gt;-->
-<!--                <form th:action="@{'/show/' + ${post.id} + '/delete'}" method="post">-->
-<!--                    <button class="btn btn-danger btn-block">Delete Ad</button>-->
-
-<!--                </form>-->
-<!--    </div>-->
-<!--</div>-->
 </body>
 </html>
