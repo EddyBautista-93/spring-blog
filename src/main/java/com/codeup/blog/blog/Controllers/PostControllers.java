@@ -1,7 +1,9 @@
 package com.codeup.blog.blog.Controllers;
 
 import com.codeup.blog.blog.Repo.PostRepository;
+import com.codeup.blog.blog.Repo.UserRepository;
 import com.codeup.blog.blog.models.Post;
+import com.codeup.blog.blog.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,24 +15,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PostControllers {
 
     private PostRepository postDao;
+    private UserRepository userDao;
     private Post post;
+    private User user;
 
     public PostControllers(PostRepository postDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/")
     public String index() {
         return "/post/index";
     }
-
-//    @PostMapping("/ads")
-//    public String showPost(@RequestParam(name = "title") String title, @RequestParam(name = "description") String desc, @RequestParam(name = "id") int id, Model x){
-//        ArrayList<Post> userPost = new ArrayList<>();
-//        userPost.add(new Post(id,title,desc));
-//        x.addAttribute("post", postDao.findAll());
-//        return "/post/show";
-//    }
 
     @GetMapping("/show")
     public String showPost(Model x) {
@@ -60,6 +57,16 @@ public class PostControllers {
         return "redirect:/show/";
     }
 
+    @GetMapping("/show/create")
+    public String showCreateForm(){
+        return "post/create";
+    }
+
+    @PostMapping("/show/create")
+    public String create(@RequestParam String title, @RequestParam String body){
+        Post post = postDao.save(new Post(title, body));
+        return "redirect:/show/" + post.getId();
+    }
 
 
 

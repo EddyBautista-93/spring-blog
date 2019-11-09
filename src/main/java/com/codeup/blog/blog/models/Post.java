@@ -10,16 +10,42 @@ public class Post {
     private long id;
 
     @Column(nullable = false,length = 200)
+
     private String title;
     @Column(nullable = false)
     private String description;
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<PostImage> image;
 
+
+    @ManyToMany(mappedBy = "post")
+    private List<Tag> tag;
+
+
     public Post() {
+    }
+
+    public Post(String title, String description, User user, List<PostImage> image, List<Tag> tag) {
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.image = image;
+        this.tag = tag;
+    }
+
+
+    public Post(String title, String description, User user) {
+        this.title = title;
+        this.description = description;
+        this.user = user;
     }
 
     public Post(String title, String description) {
@@ -32,6 +58,9 @@ public class Post {
         this.title = title;
         this.description = description;
     }
+
+
+
 
     public long getId() {
         return id;
@@ -58,6 +87,14 @@ public class Post {
     }
 
 
+    public List<Tag> getTag() {
+        return tag;
+    }
+
+    public void setTag(List<Tag> tag) {
+        this.tag = tag;
+    }
+
     public List<PostImage> getImage() {
         return image;
     }
@@ -65,7 +102,17 @@ public class Post {
     public void setImage(List<PostImage> image) {
         this.image = image;
     }
-//    public List<PostImage> getImages () {
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
+    //    public List<PostImage> getImages () {
 //        return imag es;
 //    }
 //    public void setImages(List<PostImage> image){
