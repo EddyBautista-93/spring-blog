@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th=“http://www.thymeleaf.org“>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,38 +8,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-
 <div th:replace="header ::navbar"></div>
-
-
+<a th:href="@{'/show/create'}" class="btn btn-warning">New post</a>
 <div  th:each="post : ${post}">
     <h1 th:text="${post.title}"></h1>
     <p th:text="${post.description}"></p>
     <input type="hidden" name="id" th:value="${post.id}">
-    <a th:href="@{'/show/' + ${post.id} + '/edit'}" class="btn btn-warning">Edit post</a>-->
-                <form th:action="@{'/show/' + ${post.id} + '/delete'}" method="post">
-                    <button class="btn btn-danger btn-block">Delete Ad</button>
-                </form>
+    <a th:href="@{'/show/' + ${post.id} + '/edit'}" class="btn btn-warning">Edit post</a>
+    <form th:action="@{'/show/' + ${post.id} + '/delete'}" method="post">
+        <button class="btn btn-danger btn-block">Delete Ad</button>
+    </form>
 </div>
-<!--</body>-->
-<!--</html>-->
-
-<!--<body>-->
-
-<!--        <header class="jumbotron my-3">-->
-<!--            <h1 class="display-3 text-center">View Post</h1>-->
-<!--        </header>-->
-
-<!--        <div class="card p-3">-->
-<!--            <h1 th:text="${post.title}"></h1>-->
-<!--            <p th:text="${post.description}"></p>-->
-<!--            <input type="hidden" name="id" th:value="${post.id}">-->
-<!--            <a th:href="@{'/show/' + ${post.id} + '/edit'}" class="btn btn-warning">Edit post</a>-->
-<!--            <form th:action="@{'/show/' + ${post.id} + '/delete'}" method="post">-->
-<!--                <button class="btn btn-danger btn-block">Delete Ad</button>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    -->
 </body>
-
 </html>
