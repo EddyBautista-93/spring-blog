@@ -1,30 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create Ad</title>
+<!--    <th:block th:replace="fragments/header :: main-header(false)"/>-->
 </head>
 <body>
-<div class="container mt-3">
-    <header class="jumbotron my-3">
-        <h1 class="display-3 text-center">Create Post</h1>
-    </header>
-    <div class="card p-3">
-        <form th:action="@{'/show'}" th:method="post">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input class="form-control" id="title" type="text" name="title" placeholder="Enter Post title">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" placeholder="Enter Post description"></textarea>
-            </div>
-            <button class="btn btn-warning btn-block">Update</button>
-        </form>
-    </div>
-</div>
 
+<form th:action="@{/show/create}" th:method="post" th:object="${post}">
+    Title:
+    <input th:field="*{title}" />
+    <br />
+    Description:
+    <input th:field="*{description}" />
+    <br />
+    <input type="submit" />
+</form>
+<!--<th:block th:replace="fragments/footer :: main-footer"/>-->
 </body>
 </html>

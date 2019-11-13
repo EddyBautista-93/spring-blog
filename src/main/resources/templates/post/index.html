@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <style>
+        body{
+            background-image: url("https://media.giphy.com/media/w7Y4xlQZG7qGA/giphy.gif    ");
+            background-size: cover;
+            height: 100vh;
+        }
+        .jumbotron{
+            height: 400px;
+            width: 400px;
+            margin: 200px auto;
+
+
+
+        }
+
+
+    </style>
+
+
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div th:replace="header ::navbar"></div>
-<h1>Create a post!</h1>
-<form action="/show" method="post">
-    <h6>Title</h6>
-    <input type="text" name="title" id="title_id" class="field" >
-    <h6> Description</h6>
-    <input type="text" name="description" id="desc_id" class="field" >
-    <input type="hidden" name="id" >
 
-
-    <Button>Submit add </Button>
-</form>
+<div class="jumbotron">
+    <h1 class="display-4">Eddy's Blog!</h1>
+    <p class="lead">Welcome to my blog, catch up with all things code!</p>
+    <hr class="my-4">
+    <p>View my content</p>
+    <a class="btn btn-primary btn-lg" href="/show" role="button">View Post</a>
+</div>
 
 
 </body>

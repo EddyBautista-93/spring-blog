@@ -2,27 +2,29 @@ package com.codeup.blog.blog.Controllers;
 
 import com.codeup.blog.blog.Repo.PostRepository;
 import com.codeup.blog.blog.Repo.UserRepository;
+import com.codeup.blog.blog.models.EmailService;
 import com.codeup.blog.blog.models.Post;
 import com.codeup.blog.blog.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostControllers {
 
-    private PostRepository postDao;
-    private UserRepository userDao;
-    private Post post;
-    private User user;
+    private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostControllers(PostRepository postDao) {
+
+    public PostControllers(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
+
     }
+        @Autowired
+        EmailService emailService;
+
 
     @GetMapping("/")
     public String index() {
@@ -30,10 +32,20 @@ public class PostControllers {
     }
 
     @GetMapping("/show")
-    public String showPost(Model x) {
-        x.addAttribute("post", postDao.findAll());
+    public String index(Model x) {
+        x.addAttribute("posts", postDao.findAll());
+//        x.addAttribute("user", userDao.getOne(id));
         return "/post/show";
     }
+
+//    @GetMapping("/show/{id}")
+//    public String show(@PathVariable long id, Model viewModel){
+//        viewModel.addAttribute("post", postDao.getOne(id));
+//        viewModel.addAttribute("user", userDao.getOne(id));
+//        return "post/iPost";
+//    }
+
+
 
 
     @GetMapping("show/{id}/edit")
@@ -58,17 +70,20 @@ public class PostControllers {
     }
 
     @GetMapping("/show/create")
-    public String showCreateForm(){
+    public String showCreateForm(Model vModel){
+        vModel.addAttribute("post",new Post());
         return "post/create";
     }
 
     @PostMapping("/show/create")
-    public String create(@RequestParam String title, @RequestParam String body){
-        Post post = postDao.save(new Post(title, body));
-        return "redirect:/show/" + post.getId();
+    public String create(@ModelAttribute Post postToBeCreated) {
+        postToBeCreated.setUser(userDao.getOne(1L));
+         postDao.save(postToBeCreated);
+
+        emailService.prepareAndSend(postToBeCreated, "add created", "a add has been created and the id attached to said ad is  "+ postToBeCreated.getId());
+        return "redirect:/show/";
+
     }
-
-
 
 
 }

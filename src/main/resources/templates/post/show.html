@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org“>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,14 +8,15 @@
 </head>
 <body>
 <div th:replace="header ::navbar"></div>
-<a th:href="@{'/show/create'}" class="btn btn-warning">New post</a>
-<div  th:each="post : ${post}">
+
+<div class="card p-3" th:each="post : ${posts}" >
     <h1 th:text="${post.title}"></h1>
     <p th:text="${post.description}"></p>
+<!--    <p>Created by: <span th:text="${post.user.email}"></span></p>-->
     <input type="hidden" name="id" th:value="${post.id}">
     <a th:href="@{'/show/' + ${post.id} + '/edit'}" class="btn btn-warning">Edit post</a>
     <form th:action="@{'/show/' + ${post.id} + '/delete'}" method="post">
-        <button class="btn btn-danger btn-block">Delete Ad</button>
+        <button class="btn btn-danger btn-block">Delete post</button>
     </form>
 </div>
 </body>

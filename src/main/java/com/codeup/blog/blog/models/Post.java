@@ -112,10 +112,7 @@ public class Post {
     }
 
 
-    //    public List<PostImage> getImages () {
-//        return imag es;
-//    }
-//    public void setImages(List<PostImage> image){
-//        this.images = image;
-//    }
+
+
+    //    pu
 }
