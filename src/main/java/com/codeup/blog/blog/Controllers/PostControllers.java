@@ -6,6 +6,7 @@ import com.codeup.blog.blog.models.EmailService;
 import com.codeup.blog.blog.models.Post;
 import com.codeup.blog.blog.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class PostControllers {
 
     @GetMapping("/")
     public String index() {
+        System.out.println((SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
         return "/post/index";
     }
 
@@ -77,10 +79,10 @@ public class PostControllers {
 
     @PostMapping("/show/create")
     public String create(@ModelAttribute Post postToBeCreated) {
-        postToBeCreated.setUser(userDao.getOne(1L));
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        postToBeCreated.setUser(currentUser);
          postDao.save(postToBeCreated);
-
-        emailService.prepareAndSend(postToBeCreated, "add created", "a add has been created and the id attached to said ad is  "+ postToBeCreated.getId());
+         emailService.prepareAndSend(postToBeCreated, "add created", "a add has been created and the id attached to said ad is  "+ postToBeCreated.getId());
         return "redirect:/show/";
 
     }

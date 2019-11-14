@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Ad</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 <!--    <th:block th:replace="fragments/header :: main-header(false)"/>-->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="header ::navbar"></div>
 
 <form th:action="@{/show/create}" th:method="post" th:object="${post}">
     Title:
     <input th:field="*{title}" />
     <br />
+
+
+    <div id="editor">
     Description:
+
+
     <input th:field="*{description}" />
     <br />
     <input type="submit" />
+
+    </div>
 </form>
 <!--<th:block th:replace="fragments/footer :: main-footer"/>-->
+
+
+
 </body>
 </html>

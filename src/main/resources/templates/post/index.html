@@ -3,38 +3,74 @@
 <head>
     <style>
         body{
-            background-image: url("https://media.giphy.com/media/w7Y4xlQZG7qGA/giphy.gif    ");
+            /*background-image: url("https://media.giphy.com/media/w7Y4xlQZG7qGA/giphy.gif    ");*/
+            background-image: url("https://media.giphy.com/media/8mYKQgrsIFLY4/giphy.gif");
             background-size: cover;
             height: 100vh;
         }
-        .jumbotron{
-            height: 400px;
+        .card{
+            height: 380px;
             width: 400px;
             margin: 200px auto;
 
-
-
         }
-
-
     </style>
-
-
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Welcome to my blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
 <div th:replace="header ::navbar"></div>
+<div class="card">
+    <div class="card-content">
+        <p class="title">
+            “Welcome to my personal blog, I talk about all things code and tech!.”
+        </p>
+        <p class="subtitle">
+            -Eddy Bautista
+        </p>
+        <button class="button is-primary modal-button" data-target="#myModal" aria-haspopup="true">About Me!</button>
 
-<div class="jumbotron">
-    <h1 class="display-4">Eddy's Blog!</h1>
-    <p class="lead">Welcome to my blog, catch up with all things code!</p>
-    <hr class="my-4">
-    <p>View my content</p>
-    <a class="btn btn-primary btn-lg" href="/show" role="button">View Post</a>
+        <div class="modal" id="myModal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box"><img src="http://www.k-9superheroesdogwhispering.com/wp-content/uploads/2013/02/fat-pug-dog.jpg">  </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+    </div>
+    <footer class="card-footer">
+        <p class="card-footer-item">
+      <span>
+        View my <a href="https://github.com/EddyBautista-93">Github</a>
+      </span>
+        </p>
+        <p class="card-footer-item">
+      <span>
+         <a href="https://linkedin.com/in/eddy-bautista">Hire Me!</a>
+      </span>
+        </p>
+    </footer>
 </div>
+<script
+        src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
+<script>
 
+    document.querySelectorAll('.modal-button').forEach(function(el) {
+        el.addEventListener('click', function() {
+            var target = document.querySelector(el.getAttribute('data-target'));
 
+            target.classList.add('is-active');
+
+            target.querySelector('.modal-close').addEventListener('click',   function() {
+                target.classList.remove('is-active');
+            });
+        });
+    });
+
+</script>
 </body>
 </html>
