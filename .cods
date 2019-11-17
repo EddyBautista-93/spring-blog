@@ -1,0 +1,4 @@
+BUILD_COMMAND='./mvnw package'
+java -jar target/blog-0.0.1-SNAPSHOT.jar
+
+
